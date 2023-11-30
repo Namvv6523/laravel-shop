@@ -13,6 +13,7 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('admin/css/adminlte.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/css/custom.css') }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -79,6 +80,16 @@
     <script src=" {{ asset('admin/js/adminlte.min.js') }} "></script>
 
     <script src="{{ asset('admin/js/demo.js') }} "></script>
+
+    <script type="text/javascript">
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    </script>
+
+    @yield('customJs')
 </body>
 
 </html>
